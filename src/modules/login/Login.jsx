@@ -9,6 +9,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
+
         event.preventDefault();
 
         const response = await fetch('http://localhost:3002/auth/login', {
@@ -21,9 +22,9 @@ const Login = () => {
 
         const data = await response.json();
         if (response.status === 200) {
-            console.log('Login successful:', data);
+            const data = await response.json();
+            auth.login({ ...data.user, token: data.token });
             navigate('/home');
-
         } else {
             console.error('Login failed:', data.message);
         }
