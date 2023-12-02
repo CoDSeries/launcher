@@ -23,6 +23,7 @@ const Login = () => {
         if (response.status === 200) {
             console.log('Login successful:', data);
             navigate('/home');
+
         } else {
             console.error('Login failed:', data.message);
         }
