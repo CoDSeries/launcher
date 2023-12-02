@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {useAuth} from "../../AuthProvider";
-import {useNavigate} from 'react-router-dom';
+import { useAuth } from "../../AuthProvider";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -9,10 +9,9 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
-
         event.preventDefault();
 
-        const response = await fetch('http://localhost:3002/auth/login', {
+        const response = await fetch('http://localhost:5001/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,13 +19,16 @@ const Login = () => {
             body: JSON.stringify({ email, password }),
         });
 
-        const data = await response.json();
-        if (response.status === 200) {
+        try {
             const data = await response.json();
-            auth.login({ ...data.user, token: data.token });
-            navigate('/home');
-        } else {
-            console.error('Login failed:', data.message);
+            if (response.status === 200) {
+                auth.login({ ...data.user, token: data.token });
+                navigate('/home');
+            } else {
+                console.error('Login failed:', data.message);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON response:', error);
         }
     };
 

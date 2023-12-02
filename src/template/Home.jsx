@@ -1,7 +1,6 @@
-// src/template/Home.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../AuthProvider';
+import {Link} from "react-router-dom";
 
 const Home = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -10,7 +9,7 @@ const Home = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await fetch('http://localhost:3002/me', {
+                const response = await fetch('http://localhost:5001/api/me', {
                     headers: {
                         'Authorization': `Bearer ${user.token}`
                     }
@@ -18,7 +17,8 @@ const Home = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setUserInfo(data.user);
+                    console.log(data);
+                    setUserInfo(data); // Modifiez cette ligne
                 } else {
                     console.error('Erreur lors de la récupération des informations de l\'utilisateur');
                 }
@@ -32,15 +32,17 @@ const Home = () => {
         }
     }, [user]);
 
+
     return (
         <div>
             <h1>Home</h1>
             {userInfo && (
                 <div>
-                    <p>Nom: {userInfo.name}</p>
+                    <p>Nom: {userInfo.username}</p>
                     <p>Email: {userInfo.email}</p>
                 </div>
             )}
+            <Link to="/match">Accéder aux Matches</Link> {/* Lien vers MatchMenu */}
         </div>
     );
 };
