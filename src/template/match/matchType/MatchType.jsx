@@ -15,7 +15,7 @@ const MatchType = () => {
     return (
         <section className={styles.container}>
             <div className={styles.header}>
-                <h1>Launching {matchType ? `${matchType} ${gameMode}` : "Match"}</h1>
+                <h1>Launching {matchType ? `${matchType}` : "Match"}</h1>
             </div>
             <div className={styles.cardContainer}>
                 <div className={styles.cardMatch}>

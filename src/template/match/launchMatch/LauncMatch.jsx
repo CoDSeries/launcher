@@ -4,7 +4,7 @@ import styles from './LaunchMatch.module.css';
 
 const LaunchMatch = () => {
     const location = useLocation();
-    const { matchType } = location.state;
+    const { matchType, gameMode } = location.state || {};
 
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const LaunchMatch = () => {
 
     return (
         <section className={styles.container}>
-            <h1>Launching {matchType} Match</h1>
+            <h1>Launching {matchType} {gameMode} Match</h1>
             <button onClick={goBack}>GO back</button>
         </section>
     );
