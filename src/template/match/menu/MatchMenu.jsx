@@ -16,15 +16,11 @@ const MatchMenu = () => {
             </div>
             <div className={styles.cardContainer}>
                 <div className={styles.cardMatch}>
-                    <Link to="/match/origins/ranked">
-                        Ranked
-                    </Link>
+                    <Link to="/match/origins/ranked">Ranked</Link>
                 </div>
 
                 <div className={styles.cardMatch}>
-                    <Link to="/match/origins/unranked">
-                        Unranked
-                    </Link>
+                    <Link to="/match/origins/unranked">Unranked</Link>
                 </div>
             </div>
             <div className={styles.footer}>
